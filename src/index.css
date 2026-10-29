@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-heading: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #FAF2F4;
+    color: #2D2327;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f5e4eb;
+}
+::-webkit-scrollbar-thumb {
+  background: #c8819d;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9d3862;
+}
+
+/* Custom wireframe-matching style classes */
+.card-wireframe {
+  background: #ffffff;
+  border: 1px solid #edd4df;
+  box-shadow: 0 4px 20px -2px rgba(157, 56, 98, 0.06);
+}
+
+.card-wireframe-pink {
+  background: linear-gradient(135deg, #fdf5f7 0%, #fae8ef 100%);
+  border: 1.5px solid #e8c6d4;
+}
+
+.btn-primary-berry {
+  background-color: #903458;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+.btn-primary-berry:hover {
+  background-color: #782746;
+}

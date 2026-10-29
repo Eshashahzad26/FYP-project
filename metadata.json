@@ -1,0 +1,6 @@
+{
+  "name": "herAttire Aesthetics",
+  "description": "AI-powered Pakistani women's virtual try-on, smart styling recommendation, and Pakistani fashion customization platform featuring Dulhan Mode, Hijab/Dupatta matching, and stitching estimator.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
