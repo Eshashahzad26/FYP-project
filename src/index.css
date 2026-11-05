@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-heading: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #FAF2F5;
+    color: #2D2126;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Custom Pakistani luxury scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8e5ee;
+}
+::-webkit-scrollbar-thumb {
+  background: #ba6081;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8c2449;
+}
+
+/* Custom wireframe & boutique style classes */
+.card-wireframe {
+  background: #ffffff;
+  border: 1px solid #ebd2de;
+  box-shadow: 0 4px 20px -2px rgba(140, 36, 73, 0.06);
+}
+
+.card-wireframe-pink {
+  background: linear-gradient(135deg, #fdf6f9 0%, #fae6ef 100%);
+  border: 1.5px solid #e7bfd1;
+}
+
+.card-eastern-gold {
+  background: linear-gradient(135deg, #fffdf8 0%, #fcf7ed 100%);
+  border: 1.5px solid #e4caa0;
+  box-shadow: 0 4px 18px -2px rgba(184, 127, 23, 0.08);
+}
+
+.btn-primary-berry {
+  background-color: #8c2449;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+.btn-primary-berry:hover {
+  background-color: #721937;
+}
+
+.text-gold-zari {
+  color: #c59b27;
+}
+
+.bg-gold-zari {
+  background-color: #c59b27;
+}
