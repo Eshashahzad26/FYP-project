@@ -1,0 +1,23 @@
+[
+  {
+    "id": "log-1",
+    "adminName": "Admin (Zara)",
+    "action": "Price Update",
+    "details": "Updated price of Sultana Crimson Zardozi from PKR 195,000 to PKR 185,000",
+    "timestamp": "2026-03-11T09:15:00Z"
+  },
+  {
+    "id": "log-2",
+    "adminName": "Admin (Zara)",
+    "action": "Stock Adjustment",
+    "details": "Added 10 units to Khaadi Summer Lawn Kurti Size S & M",
+    "timestamp": "2026-03-10T16:40:00Z"
+  },
+  {
+    "id": "log-3",
+    "adminName": "Admin (Zara)",
+    "action": "Order Status Change",
+    "details": "Order HAA-2026-9481 marked as Out for Delivery",
+    "timestamp": "2026-03-12T09:00:00Z"
+  }
+]

@@ -13,14 +13,16 @@ import {
 import { useApp } from '../../context/AppContext.tsx';
 
 export const AuthModal: React.FC = () => {
-  const { 
-    isAuthModalOpen, 
-    setIsAuthModalOpen, 
-    authMode, 
-    setAuthMode, 
-    user, 
-    updateUser, 
-    showToast 
+  const {
+    isAuthModalOpen,
+    setIsAuthModalOpen,
+    authMode,
+    setAuthMode,
+    showToast,
+    registerUser,
+    loginUser,
+    user,
+    updateUser
   } = useApp();
 
   const [email, setEmail] = useState('');
@@ -30,30 +32,36 @@ export const AuthModal: React.FC = () => {
   const [phone, setPhone] = useState('');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [resetSuccess, setResetSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isAuthModalOpen) return null;
 
-  // Password validation (FR-1.3)
   const isPasswordValid = (pwd: string) => {
     return pwd.length >= 8 && /[A-Za-z]/.test(pwd) && /[0-9]/.test(pwd);
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg(null);
 
     if (!email.trim() || !password.trim()) {
-      setErrorMsg('Please enter both your email/username and password.');
+      setErrorMsg('Please enter both your email and password.');
       return;
     }
 
-    // Success simulation
-    updateUser({ email, name: email.split('@')[0] || 'Sana Tariq' });
-    setIsAuthModalOpen(false);
-    showToast(`Welcome back, ${email.split('@')[0]}!`);
+    try {
+      setIsSubmitting(true);
+      const loggedUser = await loginUser(email, password);
+      setIsAuthModalOpen(false);
+      showToast(`Welcome back, ${loggedUser.name.split(' ')[0]}!`);
+    } catch (error: any) {
+      setErrorMsg(error.message || 'Login failed.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg(null);
 
@@ -74,15 +82,23 @@ export const AuthModal: React.FC = () => {
       return;
     }
 
-    updateUser({
-      name,
-      email,
-      phone: phone || '+92 300 0000000',
-      role: 'customer'
-    });
-
-    setIsAuthModalOpen(false);
-    showToast('Account successfully created! Welcome to herAttire Aesthetics.');
+    try {
+      setIsSubmitting(true);
+      const createdUser = await registerUser({ name, email, phone, password });
+      updateUser({
+        id: createdUser.id,
+        name: createdUser.name,
+        email: createdUser.email,
+        phone: createdUser.phone,
+        role: 'customer'
+      });
+      setIsAuthModalOpen(false);
+      showToast('Account successfully created! Welcome to herAttire Aesthetics.');
+    } catch (error: any) {
+      setErrorMsg(error.message || 'Registration failed.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleForgotPassword = (e: React.FormEvent) => {
@@ -177,9 +193,10 @@ export const AuthModal: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-[#903458] hover:bg-[#782847] text-white text-xs font-bold transition-all shadow-sm cursor-pointer"
+              disabled={isSubmitting}
+              className="w-full py-2.5 rounded-xl bg-[#903458] hover:bg-[#782847] text-white text-xs font-bold transition-all shadow-sm cursor-pointer disabled:opacity-60"
             >
-              Log in
+              {isSubmitting ? 'Logging in...' : 'Log in'}
             </button>
 
             <div className="text-center text-xs text-stone-500 pt-2 border-t border-[#eed4e0]">
@@ -289,9 +306,10 @@ export const AuthModal: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-[#903458] hover:bg-[#782847] text-white text-xs font-bold transition-all shadow-sm cursor-pointer"
+              disabled={isSubmitting}
+              className="w-full py-2.5 rounded-xl bg-[#903458] hover:bg-[#782847] text-white text-xs font-bold transition-all shadow-sm cursor-pointer disabled:opacity-60"
             >
-              Sign Up
+              {isSubmitting ? 'Creating account...' : 'Sign Up'}
             </button>
 
             <div className="text-center text-xs text-stone-500 pt-2 border-t border-[#eed4e0]">

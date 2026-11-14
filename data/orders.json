@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ord-101",
+    "orderNumber": "HAA-2026-9481",
+    "userId": "usr-sana-01",
+    "userName": "Sana Tariq",
+    "userEmail": "sana.tariq@gmail.com",
+    "userPhone": "+92 301 4589211",
+    "deliveryAddress": {
+      "id": "addr-1",
+      "title": "Home (Lahore)",
+      "recipientName": "Sana Tariq",
+      "phone": "+92 301 4589211",
+      "addressLine": "House 42, Block G, Phase 5, DHA",
+      "city": "Lahore",
+      "isDefault": true
+    },
+    "items": [
+      {
+        "productId": "prod-1",
+        "productName": "Rose Dust Embroidered Organza 3-Piece",
+        "brand": "Maria.B",
+        "price": 14850,
+        "size": "M",
+        "color": "Rose Pink",
+        "quantity": 1,
+        "image": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80"
+      }
+    ],
+    "paymentMethod": "Cash on Delivery",
+    "subtotal": 14850,
+    "shippingFee": 250,
+    "total": 15100,
+    "status": "Out for Delivery",
+    "statusHistory": [
+      {
+        "status": "Pending",
+        "timestamp": "2026-03-10T10:00:00Z",
+        "note": "Order placed via COD"
+      },
+      {
+        "status": "Confirmed",
+        "timestamp": "2026-03-10T14:30:00Z",
+        "note": "Inventory verified by warehouse"
+      },
+      {
+        "status": "Out for Delivery",
+        "timestamp": "2026-03-12T09:00:00Z",
+        "note": "Dispatched via TCS courier (Tracking: TCS-992144)"
+      }
+    ],
+    "createdAt": "2026-03-10T10:00:00Z",
+    "canCancel": false
+  },
+  {
+    "id": "ord-102",
+    "orderNumber": "HAA-2026-8910",
+    "userId": "usr-sana-01",
+    "userName": "Sana Tariq",
+    "userEmail": "sana.tariq@gmail.com",
+    "userPhone": "+92 301 4589211",
+    "deliveryAddress": {
+      "id": "addr-1",
+      "title": "Home (Lahore)",
+      "recipientName": "Sana Tariq",
+      "phone": "+92 301 4589211",
+      "addressLine": "House 42, Block G, Phase 5, DHA",
+      "city": "Lahore",
+      "isDefault": true
+    },
+    "items": [
+      {
+        "productId": "prod-6",
+        "productName": "Blush Pink Summer Lawn Pret Kurti",
+        "brand": "Khaadi",
+        "price": 3890,
+        "size": "M",
+        "color": "Blush Pink",
+        "quantity": 1,
+        "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700&auto=format&fit=crop&q=80"
+      }
+    ],
+    "paymentMethod": "Cash on Delivery",
+    "subtotal": 3890,
+    "shippingFee": 250,
+    "total": 4140,
+    "status": "Delivered",
+    "statusHistory": [
+      {
+        "status": "Pending",
+        "timestamp": "2026-02-18T11:15:00Z"
+      },
+      {
+        "status": "Confirmed",
+        "timestamp": "2026-02-18T16:00:00Z"
+      },
+      {
+        "status": "Out for Delivery",
+        "timestamp": "2026-02-20T08:30:00Z"
+      },
+      {
+        "status": "Delivered",
+        "timestamp": "2026-02-21T13:45:00Z",
+        "note": "Received by customer, payment collected via Cash on Delivery."
+      }
+    ],
+    "createdAt": "2026-02-18T11:15:00Z",
+    "canCancel": false
+  }
+]

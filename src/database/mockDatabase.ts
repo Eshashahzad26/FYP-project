@@ -13,7 +13,7 @@ export const INITIAL_BRANDS: BrandInfo[] = [
   {
     id: 'b1',
     name: 'Khaadi',
-    logo: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=150&auto=format&fit=crop&q=80',
+    logo: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150&auto=format&fit=crop&q=80',
     description: 'Pioneer of contemporary Pakistani hand-woven fabric, ethnic prints, and modern fusion kurtis.',
     sizeChart: [
       { size: 'XS', bust: 34, waist: 26, hips: 36, shoulder: 13.5, length: 38 },
@@ -26,7 +26,7 @@ export const INITIAL_BRANDS: BrandInfo[] = [
   {
     id: 'b2',
     name: 'Sapphire',
-    logo: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=150&auto=format&fit=crop&q=80',
+    logo: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=150&auto=format&fit=crop&q=80',
     description: 'High-street luxury fashion house celebrated for pure silk jacquards and tailored ready-to-wear.',
     sizeChart: [
       { size: 'XS', bust: 33, waist: 25, hips: 35, shoulder: 13.5, length: 37 },
@@ -39,7 +39,7 @@ export const INITIAL_BRANDS: BrandInfo[] = [
   {
     id: 'b3',
     name: 'Maria.B',
-    logo: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=150&auto=format&fit=crop&q=80',
+    logo: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=150&auto=format&fit=crop&q=80',
     description: 'Pakistan’s foremost couturier renowned for opulent bridal wear, intricate zardozi, and couture lehengas.',
     sizeChart: [
       { size: 'XS', bust: 34, waist: 26, hips: 36, shoulder: 14.0, length: 40 },
@@ -52,7 +52,7 @@ export const INITIAL_BRANDS: BrandInfo[] = [
   {
     id: 'b4',
     name: 'Sana Safinaz',
-    logo: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=150&auto=format&fit=crop&q=80',
+    logo: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=150&auto=format&fit=crop&q=80',
     description: 'Iconic fashion powerhouse known for elegant silhouettes, pastel luxury pret, and modern bridal glam.',
     sizeChart: [
       { size: 'XS', bust: 33.5, waist: 25.5, hips: 35.5, shoulder: 13.5, length: 39 },
@@ -65,7 +65,7 @@ export const INITIAL_BRANDS: BrandInfo[] = [
   {
     id: 'b5',
     name: 'Baroque',
-    logo: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=150&auto=format&fit=crop&q=80',
+    logo: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=150&auto=format&fit=crop&q=80',
     description: 'Specialists in heavily embroidered chiffon and velvet ensembles tailored for festive Pakistani soirees.',
     sizeChart: [
       { size: 'XS', bust: 34, waist: 26, hips: 36, shoulder: 14.0, length: 38 },
@@ -78,7 +78,7 @@ export const INITIAL_BRANDS: BrandInfo[] = [
   {
     id: 'b6',
     name: 'Gul Ahmed',
-    logo: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=150&auto=format&fit=crop&q=80',
+    logo: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=150&auto=format&fit=crop&q=80',
     description: 'Heritage textile giant crafting premium lawn, breathable cotton, and timeless 3-piece traditional suits.',
     sizeChart: [
       { size: 'XS', bust: 34.5, waist: 26.5, hips: 36.5, shoulder: 14.0, length: 39 },
@@ -111,8 +111,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     isActive: true,
     description: 'Delicate floral threadwork with sequin embellishments on soft organza, accompanied by a pure raw silk trouser and embroidered scalloped border dupatta.',
     images: [
-      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&auto=format&fit=crop&q=80'
     ]
   },
   {
@@ -135,8 +135,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     isActive: true,
     description: 'Heavily handcrafted bridal lehenga choli with dabka, kora, antique tilla, and swarovski stones. Paired with a double dupatta in crimson velvet and golden tissue.',
     images: [
-      'https://images.unsplash.com/photo-1546804784-896d0dca3805?w=700&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=700&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700&auto=format&fit=crop&q=80'
     ]
   },
   {
@@ -159,8 +159,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     isActive: true,
     description: 'Vibrant mustard-yellow pure chiffon angrakha with mirrorwork, gotta patti accents, and contrasting emerald green banarsi dupatta perfect for Mehndi festivities.',
     images: [
-      'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=700&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=700&auto=format&fit=crop&q=80'
     ]
   },
   {
@@ -183,8 +183,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     isActive: true,
     description: 'Serene sage green floor-length luxury bridal gown layered with French net, pearl tassels, silver cut-dana embroidery, and an elongated dramatic trail.',
     images: [
-      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=700&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=700&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700&auto=format&fit=crop&q=80'
     ]
   },
   {
@@ -207,8 +207,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     isActive: true,
     description: 'Premium Korean Nidha silk open-front abaya adorned with intricate tone-on-tone lace trims, cuff buttons, and an inclusive coordinating black chiffon hijab.',
     images: [
-      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=700&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1544441893-675973e31985?w=700&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700&auto=format&fit=crop&q=80'
     ]
   },
   {
@@ -231,8 +231,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     isActive: true,
     description: 'Airy summer lawn straight-cut kurti with contemporary cross-stitch neckline and subtle lace insets on the sleeves. Perfect for university and casual outings.',
     images: [
-      'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=700&auto=format&fit=crop&q=80'
     ]
   },
   {
@@ -255,8 +255,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     isActive: true,
     description: 'Lustrous woven jacquard shirt with gold zari neckline, embroidered organza border patch, dyed cambric trouser, and an exquisite jacquard dupatta.',
     images: [
-      'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=700&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80'
     ]
   },
   {
@@ -279,7 +279,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     isActive: true,
     description: 'Flared 16-kali flowy chiffon frock encrusted with foil mirror embroidery and resham accents. Features an embroidered net dupatta and raw silk churidar.',
     images: [
-      'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=700&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700&auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1546804784-896d0dca3805?w=700&auto=format&fit=crop&q=80'
     ]
   },
@@ -327,8 +327,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     isActive: true,
     description: 'Two-tier flared modest abaya in pastel lavender georgette chiffon with delicate French lace cuffs and matching pashmina-soft hijab.',
     images: [
-      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=700&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=700&auto=format&fit=crop&q=80'
     ]
   }
 ];
@@ -366,7 +366,7 @@ export const INITIAL_USER: UserProfile = {
     skinUndertone: 'Warm',
     confidenceScore: 0.94,
     notes: 'Measurements estimated via pose detection landmarks with ±5 cm tolerance. Skin tone classified from facial cheek and forehead keypoints.',
-    photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80',
+    photoUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80',
     analyzedAt: '2026-03-12T14:30:00Z'
   },
   addresses: [
@@ -453,7 +453,7 @@ export const INITIAL_ORDERS: Order[] = [
         size: 'M',
         color: 'Rose Pink',
         quantity: 1,
-        image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80'
+        image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80'
       }
     ],
     paymentMethod: 'Cash on Delivery',
@@ -494,7 +494,7 @@ export const INITIAL_ORDERS: Order[] = [
         size: 'M',
         color: 'Blush Pink',
         quantity: 1,
-        image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700&auto=format&fit=crop&q=80'
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700&auto=format&fit=crop&q=80'
       }
     ],
     paymentMethod: 'Cash on Delivery',
@@ -519,8 +519,8 @@ export const INITIAL_SAVED_OUTFITS: SavedOutfit[] = [
     userId: 'usr-sana-01',
     title: 'Maria.B Organza Try-On for Eid',
     product: INITIAL_PRODUCTS[0],
-    userPhotoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80',
-    tryOnResultUrl: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80',
+    userPhotoUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80',
+    tryOnResultUrl: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80',
     savedAt: '2026-03-11T12:00:00Z',
     notes: 'The drape and neckline match perfectly! Recommended size M.',
     shareId: 'share-dulhan-781'
@@ -531,8 +531,8 @@ export const INITIAL_SHARED_TRYONS: SharedTryOn[] = [
   {
     shareId: 'share-dulhan-781',
     outfitId: 'outfit-sana-1',
-    userPhotoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80',
-    tryOnResultUrl: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80',
+    userPhotoUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80',
+    tryOnResultUrl: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80',
     productName: 'Rose Dust Embroidered Organza 3-Piece',
     brand: 'Maria.B',
     price: 14850,

@@ -1,0 +1,290 @@
+[
+  {
+    "id": "b1",
+    "name": "Khaadi",
+    "logo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150&auto=format&fit=crop&q=80",
+    "description": "Pioneer of contemporary Pakistani hand-woven fabric, ethnic prints, and modern fusion kurtis.",
+    "sizeChart": [
+      {
+        "size": "XS",
+        "bust": 34,
+        "waist": 26,
+        "hips": 36,
+        "shoulder": 13.5,
+        "length": 38
+      },
+      {
+        "size": "S",
+        "bust": 36,
+        "waist": 28,
+        "hips": 38,
+        "shoulder": 14,
+        "length": 39
+      },
+      {
+        "size": "M",
+        "bust": 39,
+        "waist": 31,
+        "hips": 41,
+        "shoulder": 14.5,
+        "length": 40
+      },
+      {
+        "size": "L",
+        "bust": 42,
+        "waist": 34,
+        "hips": 44,
+        "shoulder": 15,
+        "length": 41
+      },
+      {
+        "size": "XL",
+        "bust": 46,
+        "waist": 38,
+        "hips": 48,
+        "shoulder": 15.5,
+        "length": 42
+      }
+    ]
+  },
+  {
+    "id": "b2",
+    "name": "Sapphire",
+    "logo": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=150&auto=format&fit=crop&q=80",
+    "description": "High-street luxury fashion house celebrated for pure silk jacquards and tailored ready-to-wear.",
+    "sizeChart": [
+      {
+        "size": "XS",
+        "bust": 33,
+        "waist": 25,
+        "hips": 35,
+        "shoulder": 13.5,
+        "length": 37
+      },
+      {
+        "size": "S",
+        "bust": 35,
+        "waist": 27,
+        "hips": 37,
+        "shoulder": 14,
+        "length": 38
+      },
+      {
+        "size": "M",
+        "bust": 38,
+        "waist": 30,
+        "hips": 40,
+        "shoulder": 14.5,
+        "length": 40
+      },
+      {
+        "size": "L",
+        "bust": 41,
+        "waist": 33,
+        "hips": 43,
+        "shoulder": 15.5,
+        "length": 41
+      },
+      {
+        "size": "XL",
+        "bust": 45,
+        "waist": 37,
+        "hips": 47,
+        "shoulder": 16,
+        "length": 42
+      }
+    ]
+  },
+  {
+    "id": "b3",
+    "name": "Maria.B",
+    "logo": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=150&auto=format&fit=crop&q=80",
+    "description": "Pakistan’s foremost couturier renowned for opulent bridal wear, intricate zardozi, and couture lehengas.",
+    "sizeChart": [
+      {
+        "size": "XS",
+        "bust": 34,
+        "waist": 26,
+        "hips": 36,
+        "shoulder": 14,
+        "length": 40
+      },
+      {
+        "size": "S",
+        "bust": 36,
+        "waist": 28,
+        "hips": 38,
+        "shoulder": 14.5,
+        "length": 41
+      },
+      {
+        "size": "M",
+        "bust": 39,
+        "waist": 31,
+        "hips": 42,
+        "shoulder": 15,
+        "length": 42
+      },
+      {
+        "size": "L",
+        "bust": 43,
+        "waist": 35,
+        "hips": 45,
+        "shoulder": 15.5,
+        "length": 43
+      },
+      {
+        "size": "XL",
+        "bust": 47,
+        "waist": 39,
+        "hips": 49,
+        "shoulder": 16.5,
+        "length": 44
+      }
+    ]
+  },
+  {
+    "id": "b4",
+    "name": "Sana Safinaz",
+    "logo": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=150&auto=format&fit=crop&q=80",
+    "description": "Iconic fashion powerhouse known for elegant silhouettes, pastel luxury pret, and modern bridal glam.",
+    "sizeChart": [
+      {
+        "size": "XS",
+        "bust": 33.5,
+        "waist": 25.5,
+        "hips": 35.5,
+        "shoulder": 13.5,
+        "length": 39
+      },
+      {
+        "size": "S",
+        "bust": 35.5,
+        "waist": 27.5,
+        "hips": 37.5,
+        "shoulder": 14,
+        "length": 40
+      },
+      {
+        "size": "M",
+        "bust": 38.5,
+        "waist": 30.5,
+        "hips": 41,
+        "shoulder": 14.5,
+        "length": 41
+      },
+      {
+        "size": "L",
+        "bust": 42,
+        "waist": 34,
+        "hips": 44.5,
+        "shoulder": 15,
+        "length": 42
+      },
+      {
+        "size": "XL",
+        "bust": 46,
+        "waist": 38,
+        "hips": 48,
+        "shoulder": 16,
+        "length": 43
+      }
+    ]
+  },
+  {
+    "id": "b5",
+    "name": "Baroque",
+    "logo": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=150&auto=format&fit=crop&q=80",
+    "description": "Specialists in heavily embroidered chiffon and velvet ensembles tailored for festive Pakistani soirees.",
+    "sizeChart": [
+      {
+        "size": "XS",
+        "bust": 34,
+        "waist": 26,
+        "hips": 36,
+        "shoulder": 14,
+        "length": 38
+      },
+      {
+        "size": "S",
+        "bust": 36,
+        "waist": 28,
+        "hips": 38,
+        "shoulder": 14.5,
+        "length": 39
+      },
+      {
+        "size": "M",
+        "bust": 39,
+        "waist": 31,
+        "hips": 41,
+        "shoulder": 15,
+        "length": 40
+      },
+      {
+        "size": "L",
+        "bust": 42,
+        "waist": 34,
+        "hips": 44,
+        "shoulder": 15.5,
+        "length": 41
+      },
+      {
+        "size": "XL",
+        "bust": 46,
+        "waist": 38,
+        "hips": 48,
+        "shoulder": 16,
+        "length": 42
+      }
+    ]
+  },
+  {
+    "id": "b6",
+    "name": "Gul Ahmed",
+    "logo": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=150&auto=format&fit=crop&q=80",
+    "description": "Heritage textile giant crafting premium lawn, breathable cotton, and timeless 3-piece traditional suits.",
+    "sizeChart": [
+      {
+        "size": "XS",
+        "bust": 34.5,
+        "waist": 26.5,
+        "hips": 36.5,
+        "shoulder": 14,
+        "length": 39
+      },
+      {
+        "size": "S",
+        "bust": 36.5,
+        "waist": 28.5,
+        "hips": 38.5,
+        "shoulder": 14.5,
+        "length": 40
+      },
+      {
+        "size": "M",
+        "bust": 39.5,
+        "waist": 31.5,
+        "hips": 41.5,
+        "shoulder": 15,
+        "length": 41
+      },
+      {
+        "size": "L",
+        "bust": 43,
+        "waist": 35,
+        "hips": 45,
+        "shoulder": 15.5,
+        "length": 42
+      },
+      {
+        "size": "XL",
+        "bust": 47,
+        "waist": 39,
+        "hips": 49,
+        "shoulder": 16,
+        "length": 43
+      }
+    ]
+  }
+]

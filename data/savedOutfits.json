@@ -1,0 +1,48 @@
+[
+  {
+    "id": "outfit-sana-1",
+    "userId": "usr-sana-01",
+    "title": "Maria.B Organza Try-On for Eid",
+    "product": {
+      "id": "prod-1",
+      "name": "Rose Dust Embroidered Organza 3-Piece",
+      "brand": "Maria.B",
+      "category": "Shalwar Kameez",
+      "price": 14850,
+      "originalPrice": 17500,
+      "color": "Rose Pink",
+      "colorHex": "#C57D93",
+      "fabric": "Organza",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "XS": 3,
+        "S": 8,
+        "M": 12,
+        "L": 5,
+        "XL": 2
+      },
+      "inStock": true,
+      "occasion": "Semi-Formal",
+      "pieces": "3-Piece",
+      "popularity": 96,
+      "createdAt": "2026-03-10",
+      "isActive": true,
+      "description": "Delicate floral threadwork with sequin embellishments on soft organza, accompanied by a pure raw silk trouser and embroidered scalloped border dupatta.",
+      "images": [
+        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&auto=format&fit=crop&q=80"
+      ]
+    },
+    "userPhotoUrl": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "tryOnResultUrl": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80",
+    "savedAt": "2026-03-11T12:00:00Z",
+    "notes": "The drape and neckline match perfectly! Recommended size M.",
+    "shareId": "share-dulhan-781"
+  }
+]

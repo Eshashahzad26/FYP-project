@@ -1,0 +1,32 @@
+[
+  {
+    "shareId": "share-dulhan-781",
+    "outfitId": "outfit-sana-1",
+    "userPhotoUrl": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "tryOnResultUrl": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80",
+    "productName": "Rose Dust Embroidered Organza 3-Piece",
+    "brand": "Maria.B",
+    "price": 14850,
+    "category": "Shalwar Kameez",
+    "createdAt": "2026-03-11T12:10:00Z",
+    "isActive": true,
+    "opinions": [
+      {
+        "id": "op-1",
+        "authorName": "Ami (Mother)",
+        "relationship": "Mother",
+        "vote": "love",
+        "comment": "Beta this color looks so graceful on you! The rose pink suits your complexion so well. Mashallah!",
+        "createdAt": "2026-03-11T13:20:00Z"
+      },
+      {
+        "id": "op-2",
+        "authorName": "Ayesha (Sister)",
+        "relationship": "Sister",
+        "vote": "love",
+        "comment": "10/10! The embroidery on the dupatta is gorgeous. Order it before size M runs out!",
+        "createdAt": "2026-03-11T14:05:00Z"
+      }
+    ]
+  }
+]

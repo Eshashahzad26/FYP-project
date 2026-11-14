@@ -87,8 +87,8 @@ export const HomeView: React.FC = () => {
               <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-[#903458]/20 via-[#c57d93]/10 to-transparent blur-xl"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-white">
                 <img
-                  src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80"
-                  alt="Pakistani Model wearing Maria.B Organza"
+                  src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&auto=format&fit=crop&q=80"
+                  alt="Pakistani bridal fashion model wearing elegant festive attire"
                   className="w-full h-80 sm:h-96 object-cover object-top"
                 />
                 

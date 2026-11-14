@@ -107,6 +107,7 @@ export interface UserProfile {
   name: string;
   email: string;
   phone: string;
+  passwordHash?: string;
   profilePic?: string;
   addresses: DeliveryAddress[];
   measurements?: UserMeasurements;

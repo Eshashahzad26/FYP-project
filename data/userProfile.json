@@ -1,0 +1,68 @@
+{
+  "id": "usr-sana-01",
+  "name": "Sana Tariq",
+  "email": "sana.tariq@gmail.com",
+  "phone": "+92 301 4589211",
+  "profilePic": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80",
+  "favoriteColors": [
+    "Rose Pink",
+    "Emerald Green",
+    "Midnight Black",
+    "Ivory"
+  ],
+  "preferredStyles": [
+    "Classic Traditional",
+    "Subtle Embroidery",
+    "Modest Cut",
+    "A-Line Shalwar Kameez"
+  ],
+  "styleProfileNotes": [
+    "Prefers organza and chiffon dupattas for formal events",
+    "Medium warm skin tone matches well with rich jewel tones and warm pastels",
+    "Comfortable in size M across Khaadi and S in Sapphire"
+  ],
+  "measurements": {
+    "heightCm": 165,
+    "bustInches": 37,
+    "waistInches": 29.5,
+    "hipsInches": 39.5,
+    "shoulderInches": 14.5
+  },
+  "bodyAnalysis": {
+    "bodyShape": "Hourglass",
+    "measurements": {
+      "heightCm": 165,
+      "bustInches": 37,
+      "waistInches": 29.5,
+      "hipsInches": 39.5,
+      "shoulderInches": 14.5
+    },
+    "skinTone": "Medium",
+    "skinUndertone": "Warm",
+    "confidenceScore": 0.94,
+    "notes": "Measurements estimated via pose detection landmarks with ±5 cm tolerance. Skin tone classified from facial cheek and forehead keypoints.",
+    "photoUrl": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80",
+    "analyzedAt": "2026-03-12T14:30:00Z"
+  },
+  "addresses": [
+    {
+      "id": "addr-1",
+      "title": "Home (Lahore)",
+      "recipientName": "Sana Tariq",
+      "phone": "+92 301 4589211",
+      "addressLine": "House 42, Block G, Phase 5, DHA",
+      "city": "Lahore",
+      "isDefault": true
+    },
+    {
+      "id": "addr-2",
+      "title": "Office (Gulberg)",
+      "recipientName": "Sana Tariq",
+      "phone": "+92 301 4589211",
+      "addressLine": "Suite 304, Mall 1, Main Boulevard, Gulberg III",
+      "city": "Lahore",
+      "isDefault": false
+    }
+  ],
+  "role": "customer"
+}

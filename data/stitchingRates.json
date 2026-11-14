@@ -1,0 +1,34 @@
+{
+  "garmentBaseRates": {
+    "1-Piece (Kurti / Shirt)": 1200,
+    "2-Piece (Shirt + Trouser)": 2200,
+    "3-Piece (Shirt + Shalwar + Dupatta)": 3200,
+    "Kalidar / Flared Frock": 4500,
+    "Lehenga Choli Set": 8500,
+    "Bridal Gown / Maxi": 18000
+  },
+  "fabricSurcharges": {
+    "Lawn / Cotton": 0,
+    "Chiffon": 400,
+    "Organza": 800,
+    "Silk / Jacquard": 950,
+    "Velvet": 1400,
+    "Net": 700
+  },
+  "embellishmentRates": {
+    "plain": 0,
+    "light": 700,
+    "heavy": 2800
+  },
+  "liningRates": {
+    "none": 0,
+    "lawn": 600,
+    "silk": 1300
+  },
+  "customAddons": {
+    "tasselsAndLace": 500,
+    "piping": 350,
+    "customNeckline": 600,
+    "designerSleeves": 550
+  }
+}

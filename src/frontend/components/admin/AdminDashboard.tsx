@@ -25,8 +25,10 @@ import { Product, Order, OrderStatus, StitchingRateConfig, AdminAuditLog } from 
 export const AdminDashboard: React.FC = () => {
   const { setCurrentView, showToast, refreshProducts, products, orders, refreshOrders } = useApp();
 
-  // Admin Auth simulation (FR-7.1, FR-7.2)
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(true);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.localStorage.getItem('herAttire_admin_authenticated') === 'true';
+  });
   const [adminEmail, setAdminEmail] = useState('admin@herattire.pk');
   const [adminPassword, setAdminPassword] = useState('admin123');
   const [authError, setAuthError] = useState<string | null>(null);
@@ -37,6 +39,7 @@ export const AdminDashboard: React.FC = () => {
   // Stats & Logs
   const [statsData, setStatsData] = useState<any>(null);
   const [auditLogs, setAuditLogs] = useState<AdminAuditLog[]>([]);
+  const [brands, setBrands] = useState<any[]>([]);
 
   // Product Form Modal state
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
@@ -81,21 +84,43 @@ export const AdminDashboard: React.FC = () => {
     }
   };
 
+  const fetchBrands = async () => {
+    try {
+      const data = await apiClient.getBrands();
+      setBrands(data);
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+
   useEffect(() => {
     fetchStats();
     fetchRates();
+    fetchBrands();
   }, []);
 
   // Admin login check (FR-7.1, FR-7.2)
-  const handleAdminLogin = (e: React.FormEvent) => {
+  const handleAdminLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (adminEmail === 'admin@herattire.pk' && adminPassword === 'admin123') {
+    try {
+      await apiClient.adminLogin(adminEmail, adminPassword);
       setIsAdminAuthenticated(true);
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('herAttire_admin_authenticated', 'true');
+      }
       setAuthError(null);
       showToast('Welcome to the herAttire Seller & Store Management Console.');
-    } else {
-      setAuthError('Invalid credentials. (Hint: admin@herattire.pk / admin123)');
+    } catch (err: any) {
+      setAuthError(err.message || 'Invalid admin credentials.');
     }
+  };
+
+  const handleAdminLogout = () => {
+    setIsAdminAuthenticated(false);
+    if (typeof window !== 'undefined') {
+      window.localStorage.removeItem('herAttire_admin_authenticated');
+    }
+    showToast('Admin session ended.');
   };
 
   // Product save / edit (FR-7.3, FR-7.4, FR-7.9, FR-7.11)
@@ -162,6 +187,17 @@ export const AdminDashboard: React.FC = () => {
     await apiClient.updateStitchingRates(updatedRates);
     setStitchingRates(updatedRates);
     showToast(`Base rate for "${garment}" updated to PKR ${amount.toLocaleString()}`);
+  };
+
+  // Brand size chart update (FR-7.8)
+  const handleUpdateBrandSizeChart = async (brandId: string, sizeChart: any[]) => {
+    try {
+      const updated = await apiClient.updateBrandSizeChart(brandId, sizeChart);
+      setBrands((current) => current.map((brand) => brand.id === brandId ? updated : brand));
+      showToast(`${updated.name} size chart updated successfully.`);
+    } catch (err: any) {
+      showToast('Error: ' + err.message);
+    }
   };
 
   // Login screen if not authenticated
@@ -248,7 +284,7 @@ export const AdminDashboard: React.FC = () => {
             Return to Customer Store
           </button>
           <button
-            onClick={() => setIsAdminAuthenticated(false)}
+            onClick={handleAdminLogout}
             className="p-2 rounded-full text-stone-400 hover:text-red-600 hover:bg-red-50"
             title="Log Out Admin"
           >
@@ -264,6 +300,7 @@ export const AdminDashboard: React.FC = () => {
           { id: 'products', label: `Products (${products.length})` },
           { id: 'orders', label: `Orders (${orders.length})` },
           { id: 'stitching', label: 'Stitching Rates' },
+          { id: 'brands', label: `Brands (${brands.length})` },
           { id: 'audit', label: `Audit Log (${auditLogs.length})` },
         ].map((tab) => (
           <button
@@ -558,7 +595,50 @@ export const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* 5. AUDIT LOG TAB (FR-7.18) */}
+      {/* 5. BRANDS MANAGEMENT TAB (FR-7.8) */}
+      {activeTab === 'brands' && (
+        <div className="space-y-4">
+          <div className="rounded-2xl bg-white border border-[#eed4e0] p-6 shadow-xs space-y-4">
+            <h3 className="font-serif font-bold text-lg text-stone-900 flex items-center gap-2">
+              <Package className="w-4 h-4 text-[#903458]" />
+              <span>Brand Management & Size Charts</span>
+            </h3>
+            <p className="text-xs text-stone-500">
+              Manage brand details and update size charts for accurate customer fittings.
+            </p>
+
+            <div className="space-y-3">
+              {brands.map((brand) => (
+                <div key={brand.id} className="p-4 rounded-xl bg-[#f9fafb] border border-[#eed4e0] shadow-xs">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-serif font-bold text-sm text-stone-900">{brand.name}</h4>
+                    <button
+                      onClick={() => handleUpdateBrandSizeChart(brand.id, brand.sizeChart)}
+                      className="px-3 py-1 rounded-full bg-[#903458] text-white text-xs font-semibold hover:bg-[#782847] transition-all"
+                    >
+                      Update Size Chart
+                    </button>
+                  </div>
+
+                  <div className="mt-2">
+                    <span className="text-[10px] font-semibold text-stone-500">Current Size Chart:</span>
+                    <div className="grid grid-cols-3 gap-2 mt-1">
+                      {Object.entries(brand.sizeChart).map(([size, measurements]) => (
+                        <div key={size} className="p-3 rounded-xl bg-white border border-[#eed4e0] shadow-xs">
+                          <p className="text-xs font-bold text-stone-800">{size}</p>
+                          <p className="text-[10px] text-stone-500">{measurements}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 6. AUDIT LOG TAB (FR-7.18) */}
       {activeTab === 'audit' && (
         <div className="rounded-2xl bg-white border border-[#eed4e0] p-6 shadow-xs space-y-4">
           <h3 className="font-serif font-bold text-lg text-stone-900 flex items-center gap-2">

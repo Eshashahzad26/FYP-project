@@ -1,6 +1,7 @@
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import { GoogleGenAI } from '@google/genai';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
@@ -28,11 +29,69 @@ dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const DATA_DIR = path.resolve(__dirname, 'data');
+const STORAGE_FILES = {
+  products: path.join(DATA_DIR, 'products.json'),
+  brands: path.join(DATA_DIR, 'brands.json'),
+  userProfile: path.join(DATA_DIR, 'userProfile.json'),
+  stitchingRates: path.join(DATA_DIR, 'stitchingRates.json'),
+  orders: path.join(DATA_DIR, 'orders.json'),
+  savedOutfits: path.join(DATA_DIR, 'savedOutfits.json'),
+  sharedTryOns: path.join(DATA_DIR, 'sharedTryOns.json'),
+  auditLogs: path.join(DATA_DIR, 'auditLogs.json')
+};
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT || 3000);
 
 app.use(express.json({ limit: '15mb' }));
+
+const ensureDataDir = () => {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+};
+
+const readJsonFile = <T,>(filePath: string, fallback: T): T => {
+  try {
+    if (!fs.existsSync(filePath)) {
+      fs.writeFileSync(filePath, JSON.stringify(fallback, null, 2), 'utf-8');
+      return fallback;
+    }
+
+    const content = fs.readFileSync(filePath, 'utf-8');
+    if (!content.trim()) {
+      fs.writeFileSync(filePath, JSON.stringify(fallback, null, 2), 'utf-8');
+      return fallback;
+    }
+
+    return JSON.parse(content) as T;
+  } catch (error) {
+    console.warn(`Failed to read ${filePath}, restoring fallback data.`);
+    return fallback;
+  }
+};
+
+const writeJsonFile = <T,>(filePath: string, value: T) => {
+  fs.writeFileSync(filePath, JSON.stringify(value, null, 2), 'utf-8');
+};
+
+const loadPersistedState = () => {
+  ensureDataDir();
+
+  return {
+    products: readJsonFile<Product[]>(STORAGE_FILES.products, [...INITIAL_PRODUCTS]),
+    brands: readJsonFile(STORAGE_FILES.brands, [...INITIAL_BRANDS]),
+    userProfile: readJsonFile(STORAGE_FILES.userProfile, { ...INITIAL_USER }),
+    stitchingRates: readJsonFile<StitchingRateConfig>(STORAGE_FILES.stitchingRates, { ...INITIAL_STITCHING_RATES }),
+    orders: readJsonFile<Order[]>(STORAGE_FILES.orders, [...INITIAL_ORDERS]),
+    savedOutfits: readJsonFile<SavedOutfit[]>(STORAGE_FILES.savedOutfits, [...INITIAL_SAVED_OUTFITS]),
+    sharedTryOns: readJsonFile<SharedTryOn[]>(STORAGE_FILES.sharedTryOns, [...INITIAL_SHARED_TRYONS]),
+    auditLogs: readJsonFile<AdminAuditLog[]>(STORAGE_FILES.auditLogs, [...INITIAL_AUDIT_LOGS])
+  };
+};
+
+const persisted = loadPersistedState();
 
 // Initialize Google Gemini AI SDK on the server side
 const ai = new GoogleGenAI({
@@ -44,15 +103,27 @@ const ai = new GoogleGenAI({
   }
 });
 
-// In-Memory mutable storage for demo state
-let products: Product[] = [...INITIAL_PRODUCTS];
-let brands = [...INITIAL_BRANDS];
-let userProfile = { ...INITIAL_USER };
-let stitchingRates: StitchingRateConfig = { ...INITIAL_STITCHING_RATES };
-let orders: Order[] = [...INITIAL_ORDERS];
-let savedOutfits = [...INITIAL_SAVED_OUTFITS];
-let sharedTryOns: SharedTryOn[] = [...INITIAL_SHARED_TRYONS];
-let auditLogs: AdminAuditLog[] = [...INITIAL_AUDIT_LOGS];
+// In-memory mutable storage backed by local JSON state
+let products: Product[] = [...persisted.products];
+let brands = [...persisted.brands];
+let userProfile = { ...persisted.userProfile };
+let stitchingRates: StitchingRateConfig = { ...persisted.stitchingRates };
+let orders: Order[] = [...persisted.orders];
+let savedOutfits = [...persisted.savedOutfits];
+let sharedTryOns: SharedTryOn[] = [...persisted.sharedTryOns];
+let auditLogs: AdminAuditLog[] = [...persisted.auditLogs];
+
+const persistState = () => {
+  ensureDataDir();
+  writeJsonFile(STORAGE_FILES.products, products);
+  writeJsonFile(STORAGE_FILES.brands, brands);
+  writeJsonFile(STORAGE_FILES.userProfile, userProfile);
+  writeJsonFile(STORAGE_FILES.stitchingRates, stitchingRates);
+  writeJsonFile(STORAGE_FILES.orders, orders);
+  writeJsonFile(STORAGE_FILES.savedOutfits, savedOutfits);
+  writeJsonFile(STORAGE_FILES.sharedTryOns, sharedTryOns);
+  writeJsonFile(STORAGE_FILES.auditLogs, auditLogs);
+};
 
 // Helper to log admin actions
 function logAdminAction(adminName: string, action: string, details: string) {
@@ -64,6 +135,7 @@ function logAdminAction(adminName: string, action: string, details: string) {
     timestamp: new Date().toISOString()
   };
   auditLogs.unshift(log);
+  persistState();
 }
 
 // ==========================================
@@ -514,6 +586,7 @@ app.post('/api/products', (req, res) => {
 
   products.unshift(newProduct);
   logAdminAction('Admin', 'Product Created', `Added new product: ${newProduct.name} (${newProduct.brand})`);
+  persistState();
   res.status(201).json({ success: true, product: newProduct });
 });
 
@@ -525,6 +598,7 @@ app.put('/api/products/:id', (req, res) => {
 
   products[index] = { ...products[index], ...req.body };
   logAdminAction('Admin', 'Product Updated', `Updated details for ${products[index].name}`);
+  persistState();
   res.json({ success: true, product: products[index] });
 });
 
@@ -544,6 +618,7 @@ app.delete('/api/products/:id', (req, res) => {
     // Deactivate instead
     product.isActive = false;
     logAdminAction('Admin', 'Product Deactivated', `Product ${product.name} deactivated due to active orders`);
+    persistState();
     return res.json({ 
       success: true, 
       deactivated: true, 
@@ -553,6 +628,7 @@ app.delete('/api/products/:id', (req, res) => {
 
   products = products.filter(p => p.id !== req.params.id);
   logAdminAction('Admin', 'Product Deleted', `Permanently removed product: ${product.name}`);
+  persistState();
   res.json({ success: true, deleted: true });
 });
 
@@ -571,6 +647,7 @@ app.put('/api/brands/:id/sizechart', (req, res) => {
   }
   brand.sizeChart = req.body.sizeChart;
   logAdminAction('Admin', 'Size Chart Updated', `Updated size chart parameters for ${brand.name}`);
+  persistState();
   res.json({ success: true, brand });
 });
 
@@ -585,6 +662,7 @@ app.get('/api/stitching-rates', (req, res) => {
 app.put('/api/stitching-rates', (req, res) => {
   stitchingRates = { ...stitchingRates, ...req.body };
   logAdminAction('Admin', 'Stitching Rates Updated', 'Updated tailoring base rates and embellishment multipliers');
+  persistState();
   res.json({ success: true, rates: stitchingRates });
 });
 
@@ -606,7 +684,6 @@ app.post('/api/orders', (req, res) => {
     });
   }
 
-  // Stock deduction & validation
   for (const item of items) {
     const prod = products.find(p => p.id === item.productId);
     if (prod) {
@@ -651,11 +728,11 @@ app.post('/api/orders', (req, res) => {
 
   orders.unshift(newOrder);
   logAdminAction('Customer', 'Order Placed', `Order ${orderNumber} placed for PKR ${total.toLocaleString()}`);
+  persistState();
 
   res.status(201).json({ success: true, order: newOrder });
 });
 
-// Update order status (Admin)
 app.patch('/api/orders/:id/status', (req, res) => {
   const { status, note } = req.body;
   const order = orders.find(o => o.id === req.params.id);
@@ -672,10 +749,10 @@ app.patch('/api/orders/:id/status', (req, res) => {
   });
 
   logAdminAction('Admin', 'Order Status Update', `Order ${order.orderNumber} changed to ${status}`);
+  persistState();
   res.json({ success: true, order });
 });
 
-// Cancel order (Customer, allowed before shipment)
 app.post('/api/orders/:id/cancel', (req, res) => {
   const order = orders.find(o => o.id === req.params.id);
   if (!order) {
@@ -697,7 +774,6 @@ app.post('/api/orders/:id/cancel', (req, res) => {
     note: 'Order cancelled by customer before dispatch.'
   });
 
-  // Restore inventory
   for (const item of order.items) {
     const prod = products.find(p => p.id === item.productId);
     if (prod && prod.stock[item.size] !== undefined) {
@@ -705,12 +781,9 @@ app.post('/api/orders/:id/cancel', (req, res) => {
     }
   }
 
+  persistState();
   res.json({ success: true, order });
 });
-
-// ==========================================
-// 6. SAVED OUTFITS & FAMILY SHARING OPINIONS
-// ==========================================
 
 app.get('/api/saved-outfits', (req, res) => {
   res.json({ success: true, savedOutfits });
@@ -734,7 +807,6 @@ app.post('/api/saved-outfits', (req, res) => {
 
   savedOutfits.unshift(newSaved);
 
-  // Initialize shared link record
   const shared: SharedTryOn = {
     shareId,
     outfitId: newSaved.id,
@@ -749,16 +821,17 @@ app.post('/api/saved-outfits', (req, res) => {
     opinions: []
   };
   sharedTryOns.unshift(shared);
+  persistState();
 
   res.status(201).json({ success: true, outfit: newSaved, shareId });
 });
 
 app.delete('/api/saved-outfits/:id', (req, res) => {
   savedOutfits = savedOutfits.filter(o => o.id !== req.params.id);
+  persistState();
   res.json({ success: true });
 });
 
-// Private share link retrieval
 app.get('/api/opinions/:shareId', (req, res) => {
   const shared = sharedTryOns.find(s => s.shareId === req.params.shareId);
   if (!shared || !shared.isActive) {
@@ -767,7 +840,6 @@ app.get('/api/opinions/:shareId', (req, res) => {
   res.json({ success: true, shared });
 });
 
-// Submit family opinion / vote
 app.post('/api/opinions/:shareId', (req, res) => {
   const { authorName, relationship, vote, comment } = req.body;
   const shared = sharedTryOns.find(s => s.shareId === req.params.shareId);
@@ -785,22 +857,19 @@ app.post('/api/opinions/:shareId', (req, res) => {
   };
 
   shared.opinions.push(newOpinion);
+  persistState();
   res.json({ success: true, opinion: newOpinion });
 });
 
-// Toggle share link active status
 app.patch('/api/opinions/:shareId/toggle', (req, res) => {
   const shared = sharedTryOns.find(s => s.shareId === req.params.shareId);
   if (!shared) {
     return res.status(404).json({ success: false, error: 'Share link not found' });
   }
   shared.isActive = !shared.isActive;
+  persistState();
   res.json({ success: true, isActive: shared.isActive });
 });
-
-// ==========================================
-// 7. USER PROFILE & ADDRESSES
-// ==========================================
 
 app.get('/api/user/profile', (req, res) => {
   res.json({ success: true, profile: userProfile });
@@ -808,6 +877,7 @@ app.get('/api/user/profile', (req, res) => {
 
 app.put('/api/user/profile', (req, res) => {
   userProfile = { ...userProfile, ...req.body };
+  persistState();
   res.json({ success: true, profile: userProfile });
 });
 
@@ -845,7 +915,7 @@ app.get('/api/admin/stats', (req, res) => {
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { middlewareMode: true, hmr: false },
       appType: 'spa',
     });
     app.use(vite.middlewares);
@@ -856,9 +926,43 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`herAttire Aesthetics backend running on http://0.0.0.0:${PORT}`);
-  });
+  const startOnPort = async (port: number): Promise<number> => {
+    for (let candidate = port; candidate < port + 20; candidate += 1) {
+      try {
+        await new Promise<void>((resolve, reject) => {
+          const server = app.listen(candidate, '0.0.0.0', () => {
+            console.log(`herAttire Aesthetics backend running on http://0.0.0.0:${candidate}`);
+            resolve();
+          });
+
+          server.on('error', (error: NodeJS.ErrnoException) => {
+            if (error.code === 'EADDRINUSE') {
+              reject({ code: 'EADDRINUSE', port: candidate });
+              return;
+            }
+            reject(error);
+          });
+        });
+
+        return candidate;
+      } catch (error: any) {
+        if (error?.code === 'EADDRINUSE') {
+          console.warn(`Port ${error.port} is busy. Retrying on ${error.port + 1}...`);
+          continue;
+        }
+        throw error;
+      }
+    }
+
+    throw new Error(`Unable to start server: no free port found in range ${port}-${port + 19}`);
+  };
+
+  try {
+    await startOnPort(PORT);
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
 }
 
 startServer();

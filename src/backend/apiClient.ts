@@ -200,6 +200,17 @@ export const apiClient = {
     return data;
   },
 
+  async adminLogin(email: string, password: string): Promise<{ success: boolean; message?: string }> {
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error || 'Failed to authenticate admin');
+    return data;
+  },
+
   // Gemini AI Styling
   async getGeminiStylingAdvice(params: any): Promise<{ advice: any; source: string }> {
     const res = await fetch('/api/gemini/styling-advice', {
